@@ -1,38 +1,78 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500');
+@import url('https://fonts.googleapis.com/css2?family=Hammersmith+One');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400'); 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap');
+/* cards JOST */
+
+.link-black {
+  color: black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.link-black:hover {
+  color: #bb2d3b;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-bottom: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;  
+  text-decoration: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App {
+  height: 100vh;
+}
+a:link, a:visited, a:active {
+  text-decoration:none;
+}
+.cover-container > h1, .nav-logo > h3 {
+  font-family: 'Hammersmith One';
+}
+
+:root {
+  /* Colors */
+  --black-color: black;
+  --white-color: white;
+  --gray-color: rgb(61, 61, 61);
+  --textprimary-color: black;
+  --textsecondary-color: white;
+  --primary-color: rgba(21, 67, 136, 0.8);
+  --primary-color-solid: rgba(21, 67, 136, 1);
+  --primary-color-shadow: rgba(21, 67, 136, 0.8);
+  --secondary-color: #0747a6;
+  --danger-color: #d9534f;
+  --success-color: #5cb85c;
+  --disabled-color: rgba(116, 114, 114, 0.1);
+  --offer-color: rgba(10, 209, 60, 1);
+
+  
+  /* Background Colors */
+  --bg-nosotros: 'red';
+  --bg-planes: 'blue';
+  --background-color-plan: rgb(70, 70, 70);
+  --background-myprojects: #ffffff;
+  --aside-color: rgba(255, 255, 255);
+  --navbar-color: rgb(160, 81, 81);
+  
+  /* Card Background colors */
+  --card1-color: linear-gradient(209.21deg, rgb(90, 54, 192) 13.57%, rgb(29, 145, 252) 98.38%);
+  --card2-color: linear-gradient(209.21deg, rgb(40, 45, 180) 13.57%, rgb(116, 69, 154) 98.38%);
+  --card3-color: linear-gradient(209.21deg, rgb(87, 15, 141) 13.57%, rgb(243, 91, 160) 98.38%);
+  --card4-color: linear-gradient(209.21deg, rgb(22, 155, 173) 13.57%, rgb(0, 54, 135) 98.38%);
+  --card5-color: linear-gradient(209.21deg, rgb(192, 137, 54) 13.57%, rgb(252, 248, 29) 98.38%);
+
+  /* Card Button Color */
+  --cardbutton-color: linear-gradient(rgb(255, 255, 255) 0%, rgb(217, 223, 255) 100%);
+  
 }

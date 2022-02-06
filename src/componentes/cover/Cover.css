@@ -1,0 +1,9 @@
+.cover-container {
+  padding-top: 80;
+  display: flex;
+}
+
+.video {
+  width: 100%;
+  z-index: 1;
+}

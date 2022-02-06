@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "Plan Puesta a Punto",
+    "descripcion": "Prepará tu cuerpo físicamente si hace bastante tiempo no realizas actividad física.",
+    "descripcionLarga": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "precio": 3000
+  },
+  {
+    "id": 2,
+    "title": "Plan Tonificación",
+    "descripcion": "Tonifica el cuerpo mediante ejercicios cardiovasculares/aeróbicos muy sencillos.",
+    "descripcionLarga": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "precio": 3500
+  },
+  {
+    "id": 3,
+    "title": "Plan Musculación",
+    "descripcion": "Diseñado para realizar hipertrofia muscular y lograr un crecimiento corporal.",
+    "descripcionLarga": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "precio": 4000
+  },
+  {
+    "id": 4,
+    "title": "Plan a Medida",
+    "descripcion": "Realizado a medida según necesidades y propósitos del alumno evaluado por el profe.",
+    "descripcionLarga": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "precio": 5000
+  }
+]
