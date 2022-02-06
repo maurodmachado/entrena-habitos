@@ -87,11 +87,11 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const CompraPlan = () => {
-    const mercadopago = require("mercadopago");
-    // Agrega credenciales
-    mercadopago.configure({
-    access_token: "TEST-3512637281862943-082820-69fd02c3b2ff52a67aee5dbf03c62e9e-282971304",
-    });
+    // const mercadopago = require("mercadopago");
+    // // Agrega credenciales
+    // mercadopago.configure({
+    // access_token: "TEST-3512637281862943-082820-69fd02c3b2ff52a67aee5dbf03c62e9e-282971304",
+    // });
 
 
     const classes = useStyles();
@@ -99,32 +99,33 @@ const CompraPlan = () => {
     const planes = planesEntrenamiento;
     const [plan, setPlan] = useState(undefined);
 
-    const generarPago = () => {
-        let preference = {
-            items: [
-              {
-                title: plan.title,
-                unit_price: plan.price,
-                quantity: 1,
-              },
-            ],
-          };
+    // const generarPago = () => {
+    //     let preference = {
+    //         items: [
+    //           {
+    //             title: plan.title,
+    //             unit_price: plan.price,
+    //             quantity: 1,
+    //           },
+    //         ],
+    //       };
           
-          mercadopago.preferences
-            .create(preference)
-            .then(function (response) {
-              // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-    }
+    //       mercadopago.preferences
+    //         .create(preference)
+    //         .then(function (response) {
+    //           // En esta instancia deberás asignar el valor dentro de response.body.id por el ID de preferencia solicitado en el siguiente paso
+    //         })
+    //         .catch(function (error) {
+    //           console.log(error);
+    //         });
+    // }
 
     useEffect(() => {
         setPlan(planes.find(plan =>  plan.id.toString() === id))
-    }, [id]);
+    }, [id, planes]);
+
   return <>
-  <img src={imgBack} style={{position:'fixed', zIndex:-1, width:'100%'}}/>
+  <img src={imgBack} style={{position:'fixed', zIndex:-1, width:'100%'}} alt="EntrenaHabitos"/>
       {plan !== undefined ? 
       <><Box sx={{bgcolor:'transparent', paddingTop:80, display:'flex', flexDirection:'column', alignItems:'center', height: '100vh'}}>
           <Box className={classes.containerPlan}>

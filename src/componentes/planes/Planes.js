@@ -72,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   label: {
-    display: "flex",
     flexDirection: "column",
     color: "white",
     fontSize: 32,
@@ -336,6 +335,7 @@ const Planes = () => {
                           display: "flex",
                         }}
                         src={imgPlan1}
+                        alt="EntrenaHabitos"
                       />
                     </Box>
                   </Box>

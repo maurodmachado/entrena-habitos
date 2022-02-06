@@ -1,4 +1,4 @@
-import { Box, Container, Divider, makeStyles, Typography } from '@material-ui/core';
+import { Box, Divider, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 
 
@@ -89,7 +89,7 @@ const Objetivos = () => {
     
     <Box className={classes.box1}>
       
-    <img src="https://nutricioncestaro.com/images/Foto%20chaqueta.png" width={250} style={{padding:20}}/>
+    <img src="https://nutricioncestaro.com/images/Foto%20chaqueta.png" width={250} style={{padding:20}} alt="EntrenaHabitos"/>
     <Box sx={{padding:20, fontSize:18}}>
       Los tres componentes necesarios para lograr los objetivos tanto físicos como mentales. Se necesita trabajar mucho en la voluntad de la persona, generar ganas,
        entusiasmo para realizar la actividad física. No existe empezar y dejar. No arrancas el lunes. Es una decisión que debes tomar ya y empezar tu cambio.

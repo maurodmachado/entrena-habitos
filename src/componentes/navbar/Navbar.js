@@ -11,7 +11,6 @@ import {
   Container
 } from "@material-ui/core";
 import DrawerComponent from "./Drawer";
-import { FitnessCenter } from "@material-ui/icons";
 import { Link } from 'react-scroll';
 import {Link as LinkRouter} from 'react-router-dom';
 

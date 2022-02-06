@@ -1,7 +1,5 @@
-import { Box, Grid, Input } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import React, { useState } from 'react';
-import Paper from '@mui/material/Paper';
-import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
@@ -10,7 +8,6 @@ const FooterExperience = () => {
 
   const [textValue, setTextValue] = useState("");
   const onTextChange = (e) => setTextValue(e.target.value);
-  const handleSubmit = () => console.log(textValue);
   return (
     <div className='footer-row' style={{margin:50, textAlign:'center'}}>
       <h1 style={{margin:10}}>Contacto</h1>
