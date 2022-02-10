@@ -205,6 +205,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Planes = () => {
+  const state={
+    name:'rajdeep singh',
+    love:'coding',
+    earn:'null'
+}
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
@@ -301,8 +306,8 @@ const Planes = () => {
           </Box>
           <Box id="planes" className={classes.planesList}>
             <Grid container spacing={isSmall ? 0 : 4}>
-              {planes.map((plan) => 
-                <Grid item xs={12} md={6} lg={4} xl={3}>
+              {planes.map((plan, index) => 
+                <Grid item xs={12} md={6} lg={4} xl={3} key={index}>
                   <Box className={classes.cardPlan}>
                     <Box sx={{ padding: 20, textAlign: "center", height: 200 }}>
                       <Typography variant="h6" style={{ color: "black" }}>
@@ -316,8 +321,10 @@ const Planes = () => {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <Link to={`/comprar/${plan.id}`}
-                        ><Button
+                        <Link to={{
+                  pathname: "/comprar"}}
+                state={{plan: plan}} >
+                  <Button
                           variant="contained"
                           color="primary"
                           style={{ width: "90%", padding: 10, margin: 10 }}

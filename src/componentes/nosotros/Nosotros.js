@@ -96,7 +96,7 @@ const Nosotros = () => {
   const classes = useStyles();
   return (
     <Box className={classes.nosotrosContainer}>
-      <div className={classes.item}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 94 94" class="gradients">
+      <div className={classes.item}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 94 94" className="gradients">
         <path fill="#0A67F2" d="M.555 16.159h92.74v15.457H.555z"></path>
         <path fill="#175CA6" d="M.555.932h92.74v15.457H.555z"></path>
         <path fill="#0747A6" d="M.555 31.616h92.74v15.457H.555z"></path>
