@@ -1,14 +1,8 @@
-import { Box, Button, CircularProgress, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import { Box, Button, makeStyles, Typography } from '@material-ui/core';
+import React, { useEffect } from 'react';
 import imgBack from '../../media/imgPlan4.jpg';
-import clienteAxios from '../../config/axios';
-import axios from 'axios';
-import {useLocation} from "react-router-dom";
 import Footer from '../footer/Footer'
-import planesEntrenamiento from '../planes/planes.json'
 import Navbar from '../navbar/Navbar';
-import mp from '../../media/mercadopago.svg'
-import ok from '../../media/ok.png'
 import { Link as LinkRouter, useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       flexDirection:'column', 
-      flexDirection:'row', 
       fontSize: 29,
     },
     [theme.breakpoints.up("lg")]: {

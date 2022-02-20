@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       flexDirection:'column', 
-      flexDirection:'row', 
       fontSize: 29,
     },
     [theme.breakpoints.up("lg")]: {
