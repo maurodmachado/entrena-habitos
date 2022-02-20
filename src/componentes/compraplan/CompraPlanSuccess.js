@@ -121,7 +121,7 @@ const CompraPlanSuccess = () => {
     setTimeout(() => {      
     navigate("/");
     }, 15000);
-  }, []);
+  }, [navigate]);
 
   return <>
   <Navbar tipo={false}/>

@@ -1,7 +1,6 @@
 import { Box, Button, Grid } from '@material-ui/core';
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
 const FooterExperience = () => {

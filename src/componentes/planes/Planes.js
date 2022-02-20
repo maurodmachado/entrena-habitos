@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Container,
   Divider,
   Grid,
   makeStyles,
@@ -256,11 +255,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Planes = () => {
-  const state={
-    name:'rajdeep singh',
-    love:'coding',
-    earn:'null'
-}
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
