@@ -50,46 +50,53 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     cursor:'pointer',
     color: "white",
-    fontSize: 22,
+    fontSize: 15,
     fontFamily:'Poppins',
     fontWeight:'bold',
     letterSpacing: 1,
     margin: 13,
+    [theme.breakpoints.up('sm')]: {
+      fontSize:15,
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize:15,
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize:17,
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize:22,
+    },
     "&:hover": {
       backgroundColor: 'var(--primary-color)'
     },
   },
 }));
 
-function Navbar() {
+function Navbar({tipo}) {
   const classes = useStyles();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <AppBar position="static" className={classes.navbar}>
       <CssBaseline />
         <Container>
-      <Toolbar>
+      <Toolbar style={{display:'flex', justifyContent:'center'}}>
         <Box sx={{display:'flex', flexDirection: 'row', justifyContent:'center'}}>
-        <Link  className={classes.link}
-        to="home"
-        activeClass="active"
-        spy={true} 
-        smooth={true}
-        offset={-80}
-    ><LinkRouter to="/"><Typography className={classes.logo} noWrap>
+        <LinkRouter to="/"><Typography className={classes.logo} noWrap onClick={()=>window.scrollTo({
+  top: 0,
+  behavior: 'smooth',
+})}>
           
           
          Entrená Hábitos
         </Typography>
-         </LinkRouter>
-        </Link>
+         </LinkRouter>        
         </Box>
-        {isMobile ? (
+        {isMobile && tipo ? (
           <DrawerComponent />
         ) : (
-          <div className={classes.navlinks}>
+          <div className={classes.navlinks} style={tipo !== true ? {display:'none'}:  {display:'flex'}}>
             <Link  className={classes.link}
         to="nosotros"
         activeClass="active"

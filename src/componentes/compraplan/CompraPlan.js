@@ -1,63 +1,95 @@
-import { Box, Button, CircularProgress, makeStyles, Typography } from '@material-ui/core';
+import { Box, Button, CircularProgress, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import imgBack from '../../media/imgPlan4.jpg'
-import imgQR from '../../media/qr.png'
+import imgBack from '../../media/imgPlan4.jpg';
 import clienteAxios from '../../config/axios';
+import axios from 'axios';
 import {useLocation} from "react-router-dom";
 import Footer from '../footer/Footer'
 import planesEntrenamiento from '../planes/planes.json'
+import Navbar from '../navbar/Navbar';
+import mp from '../../media/mercadopago.svg'
+import ok from '../../media/ok.png'
+import { Link as LinkRouter} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
+  allcontent: {
+    display:'flex',
+    height:'100%',
+    flexDirection:'column'
+  },
   contenido: {
-    backgroundColor:'var(--primary-color-shadow)',
+    backgroundColor:'white',
     flexDirection:'column', 
     alignItems:'center', 
+    display:'flex',
+    minHeight:'80vh',
+    height:'100%',
+    [theme.breakpoints.up("sm")]: {
+      flexDirection:'column', 
+    },
+    [theme.breakpoints.up("md")]: {
+      flexDirection:'column', 
+      flexDirection:'row', 
+      fontSize: 29,
+    },
+    [theme.breakpoints.up("lg")]: {
+      flexDirection:'row', 
+      fontSize: 33,
+    },
+    [theme.breakpoints.up("xl")]: {
+      fontSize: 38,
+      flexDirection:'row', 
+    },
   },
     containerPlan:{
-        backgroundColor:'white',
-        paddingTop:80, 
+        minHeight:700,
+        height: 'auto',
         display:'flex',
         flexDirection:'column',
         alignItems:'center',
+        justifyContent:'center',
+        width:'100%',
         paddingLeft:20,
         paddingRight:20,
+        fontSize: 29,
         [theme.breakpoints.up("sm")]: {
+          fontSize: 29,
         },
         [theme.breakpoints.up("md")]: {
           fontSize: 29,
         },
         [theme.breakpoints.up("lg")]: {
-          fontSize: 33,
+          fontSize: 30,
+          width:'70%',
         },
         [theme.breakpoints.up("xl")]: {
           fontSize: 38,
-          marginLeft:200,
-          marginRight:200,
+          paddingLeft:100,
+          width:'70%',
         },
     },
     title: {
       lineHeight: 1.5,
-      fontSize: 25,
+      fontSize: 33,
       padding: 20,
       fontWeight: "bold",
       fontFamily: "Montserrat",
       [theme.breakpoints.up("sm")]: {
-        fontSize: 25,
-      },
-      [theme.breakpoints.up("md")]: {
-        fontSize: 29,
-      },
-      [theme.breakpoints.up("lg")]: {
         fontSize: 33,
       },
+      [theme.breakpoints.up("md")]: {
+        fontSize: 37,
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: 40,
+      },
       [theme.breakpoints.up("xl")]: {
-        fontSize: 38,
+        fontSize: 45,
       },
     },
     descripcion: {
-        fontSize: 15,
-        padding: 25,
+        fontSize: 25,
+        textAlign:'center',
         fontFamily: "Montserrat",
         fontWeight:'bold',
         [theme.breakpoints.up("sm")]: {
@@ -74,19 +106,18 @@ const useStyles = makeStyles((theme) => ({
         },
 
     },
-    
     descripcionLarga: {
-        fontSize: 20,
+        fontSize: 19,
         padding: 19,
         fontFamily: "Montserrat",
         [theme.breakpoints.up("sm")]: {
-          fontSize: 20,
+          fontSize: 19,
         },
         [theme.breakpoints.up("md")]: {
-          fontSize: 15,
+          fontSize: 18,
         },
         [theme.breakpoints.up("lg")]: {
-          fontSize: 18,
+          fontSize: 21,
         },
         [theme.breakpoints.up("xl")]: {
           fontSize: 21,
@@ -97,24 +128,86 @@ const useStyles = makeStyles((theme) => ({
     botonYQR:{
       display:'flex',
       flexDirection:'column',
-      backgroundColor:'white',
-      marginLeft:0,
-      marginRight:0,
-      borderBottomLeftRadius:100,
-      borderBottomRightRadius:100,
-      height:'auto',
+      paddingTop:0,
+      paddingRight:0,
+      height: 'auto',
       justifyContent:'center',
       alignItems:'center',
       [theme.breakpoints.up("sm")]: {
+        paddingTop:0,
+        paddingRight:0,
       },
       [theme.breakpoints.up("md")]: {
+        paddingTop:90,
+        paddingRight:50,
       },
       [theme.breakpoints.up("lg")]: {
+        paddingTop:90,
+        paddingRight:80,
       },
       [theme.breakpoints.up("xl")]: {
-        marginLeft:200,
-        marginRight:200,
+        paddingTop:90,
+        paddingRight:100,
       },
+    },
+    button: {
+      backgroundColor:'#009ee3',
+      padding: 15,
+      fontFamily: "Montserrat",
+      fontSize: 20,
+      fontWeight:'bold',
+      lineHeight: 1.5,
+      borderRadius: '0.28em',
+      color: 'white',
+      cursor: 'pointer',
+      border: 0,
+      "&:disabled": {
+        backgroundColor: '#a1b2c3',
+        color: 'white',
+      },
+      "&:hover": {
+        backgroundColor: 'var(--primary-color-solid)',
+        color: 'white',
+      }
+    },
+    buttonCancelar: {
+      backgroundColor:'#d9534f',
+      padding: 5,
+      fontFamily: "Montserrat",
+      fontSize: 15,
+      fontWeight:'bold',
+      lineHeight: 1.2,
+      borderRadius: '0.28em',
+      color: 'white',
+      cursor: 'pointer',
+      border: 0,
+      marginLeft:5,
+      "&:disabled": {
+        backgroundColor: '#a1b2c3',
+        color: 'white',
+      },
+      "&:hover": {
+        backgroundColor: 'var(--primary-color-solid)',
+        color: 'white',
+      }
+    },
+    backButton:{
+      display:'flex',
+      position:'absolute',
+      backgroundColor:'#009ee3',
+      left:10 ,
+      fontFamily: "Montserrat",
+      fontSize: 18,
+      fontWeight:'bold',
+      lineHeight: 1.5,
+      borderRadius: '0.28em',
+      color: '#fff',
+      cursor: 'pointer',
+      border: 0,
+      "&:hover": {
+        backgroundColor: 'var(--primary-color-solid)',
+        color: 'white',
+      }
     }
 }))
 
@@ -122,36 +215,75 @@ const CompraPlan = () => {
 
   let location = useLocation();
     const classes = useStyles();
+    
+    const [visible, setVisible] = useState(false);
+    const [nombres, setNombres] = useState("");
+    const [apellidos, setApellidos] = useState("");
+    const [dni, setDni] = useState("");
+    const [email, setEmail] = useState("");
+    const [codigoArea, setCodigoArea] = useState("");
+    const [telefono, setTelefono] = useState("");
+    const [codigoPostal, setCodigoPostal] = useState("");
+    const [calle, setCalle] = useState("");
+    const [nroCalle, setNroCalle] = useState("");
+    const [loading, setLoading] = useState(false);
+
     const [plan, setPlan] = useState(planesEntrenamiento[0]);
     const [url, setUrl] = useState();
     const [qr, setQr] = useState();
     const [loadingQr, setLoadingQr] = useState(true);
-
     const getUrl = async (plan) => {
-      const { title, precio } = plan;
+      const { title, precio, id, descripcion } = plan;
+      const items = [ 
+        {
+          id: id,
+          title: title,
+          description: descripcion,
+          quantity: 1,
+          unit_price: precio
+        }];
+    
       try {
-        const {data} = await clienteAxios.post(
-          '/checkout', {name: title, price: precio, unit: 1}, {
-        }
-        );
-        setUrl(data.url)
+        const response = await clienteAxios.post('/checkout/create-preference', {items, comprador:{nombres, apellidos, dni, email, codigoArea, telefono, codigoPostal, calle, nroCalle}});
+        console.log(response);
+        setUrl(response.data)
     }catch(e){
       console.log(e)
     }
   }
+
+  const generarLinks = () => {
+    // getQR(plan)       
+    setLoading(true);
+    getUrl(plan);
+    setTimeout(() => {
+      setLoading(false);
+      setVisible(true)
+    }, 2000);
+  }
+
+  const cancelarPago = () => { 
+    setVisible(false);
+  }
+
+  const verificarCampos = () =>{
+    if(nombres === "" || apellidos === "" || (email === "" || !email.includes('@') || !email.includes('.')) || dni === "" || codigoArea === "" || telefono === "" || codigoPostal === "" || calle === "" || nroCalle === ""){
+      return true;
+    }
+    return false;
+  }
+
     const getQR = async (plan) => {
-      
-    window.scrollTo(0, 0)
       setLoadingQr(true);
       const { title, precio, descripcion } = plan;
       try {
-        const {data} = await clienteAxios.post(
+        const {data} = await axios.post(
           '/checkout/qr', 
           {
             external_reference: "order-id-1234",
             title: `Compra ${title}`,
             description: descripcion,
-            notification_url: "https://www.yourserver.com",
+            notification_url: "https://hookbin.com/qB0D3PWWM9CEwPllaqwP",
             total_amount: precio,
             items: [
                 {
@@ -165,31 +297,34 @@ const CompraPlan = () => {
             ]
         }
         );
-        setQr(data.qr_data.split(' ')[0]);
+        setQr(data); 
         setLoadingQr(false);
     }catch(e){
       console.log(e)
-    }
-
+    }        
   }
 
     useEffect(() => {
       if(location.state === null){
-        getUrl(plan);
-        getQR(plan);
+        setPlan(plan);
       }else{
         setPlan(location.state.plan)
-        getUrl(location.state.plan);
-        getQR(location.state.plan);
       }
     }, [plan]);
 
   return <>
+  <Navbar tipo={false}/>
   <img src={imgBack}  height="100%" width="100%" style={{display:'flex', objectFit:'cover', position:'fixed', zIndex: -100}} alt="EntrenaHabitos"/>
       {plan !== undefined? 
-      <>
+      
+      <Box className={classes.allcontent}>
       <Box  className={classes.contenido}>
+        
           <Box className={classes.containerPlan}>
+          <LinkRouter to="/">
+          <Button className={classes.backButton}>Atrás</Button>
+      </LinkRouter>
+      <br/>
         <Typography className={classes.title}>{plan.title}</Typography>
         <Box>
           <Typography className={classes.descripcion}>
@@ -205,16 +340,191 @@ const CompraPlan = () => {
       
       </Box>
       
+       
       <Box className={classes.botonYQR}>
-      <Button onClick={()=> getQR(plan)} style={{marginBottom:30, backgroundColor:'#009ee3', padding: 15, fontFamily: "Montserrat", fontSize: 22,fontWeight:'bold',
-      lineHeight: 2.70, borderRadius: '0.28em', color: '#fff', cursor: 'pointer', border: 0}}>Generar QR</Button>
-       <Box sx={{display:'flex', height:300, justifyContent:'center', alignItems:'center'}}>{loadingQr ? <CircularProgress /> : <img src={`https://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=${qr}`} width="300" height="300" alt="Entrena Habitos" />}</Box>
-      <Button onClick={()=> window.open(url)} style={{marginBottom:30, backgroundColor:'#009ee3', padding: 15, fontFamily: "Montserrat", fontSize: 22,fontWeight:'bold',
-      lineHeight: 2.70, borderRadius: '0.28em', color: '#fff', cursor: 'pointer', border: 0}}>Pagar en MercadoPago.com</Button>
-      </Box>
-      </Box>  
-      <Footer />
+      <Typography className={classes.descripcionLarga}>
+              Datos comprador
+         {visible ? <img src={ok} height="25" style={{marginLeft:10}}/> : <></>}
+          </Typography>
+     
+      <Box
+      component="form"
+      sx={{
+        width:'90%'
+        ,
+        '& .MuiTextField-root': { padding:8, width: '50%' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          disabled={visible}
+          error={nombres.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Nombres"
+          value={nombres}
+          onChange={(e) => setNombres(e.target.value)}
+        />
+        <TextField
+          disabled={visible}
+          error={apellidos.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Apellidos"
+          value={apellidos}
+          onChange={(e) => setApellidos(e.target.value)}
+        />
+
+</div>
+        
+    </Box>
+    <Box
+      component="form"
+      sx={{
+        width:'90%'
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+      <TextField
+          disabled={visible}
+          error ={email.length !== 0 && email.includes('@') ? false : true }
+          required
+          variant="outlined"
+          label="Email"
+          value={email}
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ padding:8, width: '70%' }}
+        />
+        <TextField
+          disabled={visible}
+          error={dni.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="DNI"
+          value={dni}
+          onChange={(e) => setDni(e.target.value.replace(/[^0-9]/g, ''))}
+          style={{ padding:8, width: '30%' }}
+        />
+
+</div>
+        
+    </Box>
+   
+    
+    <Box
+      component="form"
+      sx={{
+        width:'90%'
+        ,
+        '& .MuiTextField-root': { padding:8, width: '33.33%' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          disabled={visible}
+          error={codigoArea.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Codigo de área"
+          value={codigoArea}
+          type="text"
+          onChange={(e) =>  setCodigoArea(e.target.value.replace(/[^0-9]/g, ''))}
+        />
+        <TextField
+          disabled={visible}
+          error={telefono.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Telefono"
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value.replace(/[^0-9]/g, ''))}
+        />
+        <TextField
+          disabled={visible}
+          error={codigoPostal.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Código Postal"
+          value={codigoPostal}
+          onChange={(e) => setCodigoPostal(e.target.value.replace(/[^0-9]/g, ''))}
+        />
+
+</div>
+        
+    </Box>
+      <Box
+      component="form"
+      sx={{
+        width:'90%'
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <div>
+        <TextField
+          disabled={visible}
+          error={calle.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Calle"
+          value={calle}
+          onChange={(e) => setCalle(e.target.value)}
+          style={{ padding:8, width: '70%' }}
+        />
+        <TextField
+          disabled={visible}
+          error={nroCalle.length !== 0 ? false : true }
+          required
+          variant="outlined"
+          label="Número"
+          value={nroCalle}
+          onChange={(e) => setNroCalle(e.target.value.replace(/[^0-9]/g, ''))}
+          style={{ padding:8, width: '30%' }}
+        />
+
+</div>
+        
+    </Box>
+      
+    { verificarCampos() && <Typography color="error" style={{margin:5, paddingBottom:20}}>Completa los campos para generar el QR o pagar via web</Typography> } 
+       
+       {
+         visible ?
+         <>
+         <Box sx={{display:'flex', flexDirection:'row'}}>
+         <Button className={classes.button} disabled={verificarCampos()} onClick={() => window.open(url)} >
+         <img src={mp} height="40" style={{marginRight:10}}/>
+         Pagar en MercadoPago.com
+         </Button>
+         
+         <Button className={classes.buttonCancelar} onClick={()=> cancelarPago()}>
+            Cancelar
+          </Button>
+          </Box>
+         {/* <Box sx={{display:'flex', height:'auto', justifyContent:'center', alignItems:'center'}}>
+           <Box sx={{margin:10, display:'flex', justifyContent:'center'}} >{loadingQr ? <CircularProgress/> : <img src={qr} width="250" height="250" alt="Entrena Habitos" />}
+           </Box></Box> */}
+     
+     </>
+      :
+      <>
+      <Button className={classes.button} disabled={verificarCampos()} onClick={()=> generarLinks()} > 
+      <img src={mp} height="40" style={{marginRight:10}}/>
+      {loading ? 'Generando Link...' : 'Generar Pago'}
+      </Button>
       </>
+    }
+    </Box>
+    </Box> 
+      <Footer />
+      </Box>
       :
       <Typography>Loading...</Typography>
       }

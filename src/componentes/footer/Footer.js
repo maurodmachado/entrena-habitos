@@ -6,12 +6,10 @@ import FooterExperience from './experience/FooterExperience';
 const Footer = () => {
 
   return (
-    <footer>
       <div className='footer-container' id="contacto">
         <FooterContact />
         <FooterExperience />
       </div>
-    </footer>
   );
 };
 

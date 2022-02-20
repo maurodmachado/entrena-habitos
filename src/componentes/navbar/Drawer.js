@@ -10,17 +10,35 @@ import {
   makeStyles,
   Typography,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link } from 'react-scroll';
+import { Link as LinkRouter } from 'react-router-dom';
 
 import MenuIcon from "@material-ui/icons/Menu";
 
-const useStyles = makeStyles(()=>({
-    link:{
-        textDecoration:"none",
-        color: "black",
-        fontSize: "20px",
-        textAlign:'center'
+const useStyles = makeStyles((theme)=>({
+    link: {
+    textDecoration: "none",
+    cursor:'pointer',
+    color: "black",
+    fontSize: 25,
+    textAlign:'center',
+    fontFamily:'Poppins',
+    fontWeight:'bold',
+    display:'flex',
+    letterSpacing: 1,
+    [theme.breakpoints.up('sm')]: {
+      fontSize:25,
     },
+    [theme.breakpoints.up('md')]: {
+      fontSize:25,
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize:25,
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize:25,
+    },
+  },
     icon:{
         color: "white",
         width: '100%'
@@ -30,9 +48,6 @@ const useStyles = makeStyles(()=>({
       position:'absolute',
       right:0
     },
-    drawerPaper:{
-      width: '50%'
-    }
 }));
 
 const DrawerComponent = () => {
@@ -50,7 +65,14 @@ const DrawerComponent = () => {
         <List>
         <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-            <Link to="/nosotros" className={classes.link}>
+            <Link  className={classes.link}
+        to="nosotros"
+        activeClass="active"
+        spy={true} 
+        smooth={true}
+        offset={-80}
+        onClick={() => setOpenDrawer(false)}
+    >
               <Typography className={classes.link} noWrap>Quienes Somos</Typography>
             </Link>
             </ListItemText>
@@ -58,7 +80,14 @@ const DrawerComponent = () => {
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-              <Link to="/objetivos" className={classes.link}>
+              <Link className={classes.link}
+        to="objetivos"
+        activeClass="active"
+        spy={true} 
+        smooth={true}
+        offset={-80}
+        onClick={() => setOpenDrawer(false)}
+        >
               <Typography className={classes.link} noWrap>
               Objetivos</Typography>
             </Link>
@@ -67,7 +96,14 @@ const DrawerComponent = () => {
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-            <Link to="/planes" className={classes.link}>
+            <Link   className={classes.link}
+        to="planes"
+        activeClass="active"
+        spy={true} 
+        smooth={true}
+        offset={-80}
+        onClick={() => setOpenDrawer(false)}
+        >
               <Typography className={classes.link} noWrap>
               Planes</Typography>
             </Link>
@@ -76,16 +112,23 @@ const DrawerComponent = () => {
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-            <Link to="/planilla" className={classes.link}>
+            <LinkRouter to="/planilla" className={classes.link}>
               <Typography className={classes.link} noWrap>
               Planilla evolución</Typography>
-            </Link>
+            </LinkRouter>
             </ListItemText>
           </ListItem>
           <Divider/>
           <ListItem onClick={() => setOpenDrawer(false)}>
             <ListItemText>
-            <Link to="/contacto" className={classes.link}>
+            <Link   className={classes.link}
+        to="contacto"
+        activeClass="active"
+        spy={true} 
+        smooth={true}
+        offset={-80}
+        onClick={() => setOpenDrawer(false)}
+        >
               <Typography className={classes.link} noWrap>
               Contacto</Typography>
             </Link>
