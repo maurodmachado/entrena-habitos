@@ -1,8 +1,8 @@
-import { Box, Button, CircularProgress, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Box, Button, makeStyles, TextField, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import imgBack from '../../media/imgPlan4.jpg';
 import clienteAxios from '../../config/axios';
-import axios from 'axios';
+// import axios from 'axios';
 import {useLocation} from "react-router-dom";
 import Footer from '../footer/Footer'
 import planesEntrenamiento from '../planes/planes.json'
@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       flexDirection:'column', 
-      flexDirection:'row', 
       fontSize: 29,
     },
     [theme.breakpoints.up("lg")]: {
@@ -230,8 +229,8 @@ const CompraPlan = () => {
 
     const [plan, setPlan] = useState(planesEntrenamiento[0]);
     const [url, setUrl] = useState();
-    const [qr, setQr] = useState();
-    const [loadingQr, setLoadingQr] = useState(true);
+    // const [qr, setQr] = useState();
+    // const [loadingQr, setLoadingQr] = useState(true);
     const getUrl = async (plan) => {
       const { title, precio, id, descripcion } = plan;
       const items = [ 
@@ -273,36 +272,36 @@ const CompraPlan = () => {
     return false;
   }
 
-    const getQR = async (plan) => {
-      setLoadingQr(true);
-      const { title, precio, descripcion } = plan;
-      try {
-        const {data} = await axios.post(
-          '/checkout/qr', 
-          {
-            external_reference: "order-id-1234",
-            title: `Compra ${title}`,
-            description: descripcion,
-            notification_url: "https://hookbin.com/qB0D3PWWM9CEwPllaqwP",
-            total_amount: precio,
-            items: [
-                {
-                    title: title,
-                    description: descripcion,
-                    unit_price: precio,
-                    quantity: 1,
-                    unit_measure: "unit",
-                    total_amount: precio
-                }
-            ]
-        }
-        );
-        setQr(data); 
-        setLoadingQr(false);
-    }catch(e){
-      console.log(e)
-    }        
-  }
+  //   const getQR = async (plan) => {
+  //     setLoadingQr(true);
+  //     const { title, precio, descripcion } = plan;
+  //     try {
+  //       const {data} = await axios.post(
+  //         '/checkout/qr', 
+  //         {
+  //           external_reference: "order-id-1234",
+  //           title: `Compra ${title}`,
+  //           description: descripcion,
+  //           notification_url: "https://hookbin.com/qB0D3PWWM9CEwPllaqwP",
+  //           total_amount: precio,
+  //           items: [
+  //               {
+  //                   title: title,
+  //                   description: descripcion,
+  //                   unit_price: precio,
+  //                   quantity: 1,
+  //                   unit_measure: "unit",
+  //                   total_amount: precio
+  //               }
+  //           ]
+  //       }
+  //       );
+  //       setQr(data); 
+  //       setLoadingQr(false);
+  //   }catch(e){
+  //     console.log(e)
+  //   }        
+  // }
 
     useEffect(() => {
       if(location.state === null){
@@ -310,7 +309,7 @@ const CompraPlan = () => {
       }else{
         setPlan(location.state.plan)
       }
-    }, [plan]);
+    }, [plan, location.state]);
 
   return <>
   <Navbar tipo={false}/>
@@ -344,7 +343,7 @@ const CompraPlan = () => {
       <Box className={classes.botonYQR}>
       <Typography className={classes.descripcionLarga}>
               Datos comprador
-         {visible ? <img src={ok} height="25" style={{marginLeft:10}}/> : <></>}
+         {visible ? <img src={ok} height="25" style={{marginLeft:10}} alt="EntrenaHabitos"/> : <></>}
           </Typography>
      
       <Box
@@ -500,7 +499,7 @@ const CompraPlan = () => {
          <>
          <Box sx={{display:'flex', flexDirection:'row'}}>
          <Button className={classes.button} disabled={verificarCampos()} onClick={() => window.open(url)} >
-         <img src={mp} height="40" style={{marginRight:10}}/>
+         <img src={mp} height="40" style={{marginRight:10}} alt="EntrenaHabitos"/>
          Pagar en MercadoPago.com
          </Button>
          
@@ -516,7 +515,7 @@ const CompraPlan = () => {
       :
       <>
       <Button className={classes.button} disabled={verificarCampos()} onClick={()=> generarLinks()} > 
-      <img src={mp} height="40" style={{marginRight:10}}/>
+      <img src={mp} height="40" style={{marginRight:10}} alt="EntrenaHabitos"/>
       {loading ? 'Generando Link...' : 'Generar Pago'}
       </Button>
       </>
