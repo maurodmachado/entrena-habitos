@@ -1,15 +1,10 @@
-import { Box, Button, CircularProgress, Grid, makeStyles, TextField, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import { Box, Button,makeStyles, Typography } from '@material-ui/core';
+import React from 'react';
 import imgBack from '../../media/imgPlan4.jpg';
-import clienteAxios from '../../config/axios';
-import axios from 'axios';
-import {useLocation} from "react-router-dom";
 import Footer from '../footer/Footer'
-import planesEntrenamiento from '../planes/planes.json'
 import Navbar from '../navbar/Navbar';
-import mp from '../../media/mercadopago.svg'
 import rechazado from '../../media/error.png'
-import { Link as LinkRouter, useNavigate } from 'react-router-dom';
+import { Link as LinkRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   allcontent: {
@@ -29,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up("md")]: {
       flexDirection:'column', 
-      flexDirection:'row', 
       fontSize: 29,
     },
     [theme.breakpoints.up("lg")]: {
@@ -142,7 +136,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CompraPlanError = () => {
   const classes = useStyles();
-  let navigate = useNavigate();
 
 
   return <>
@@ -155,7 +148,7 @@ const CompraPlanError = () => {
           <Button className={classes.backButton}>Página Principal</Button>
       </LinkRouter>
       <Box sx={{display:'flex', flexDirection:'column'}}>
-        <Typography className={classes.titleRechazado} >RECHAZADO <img src={rechazado} width="25" /></Typography>
+        <Typography className={classes.titleRechazado} >RECHAZADO <img src={rechazado} width="25" alt="EntrenaHabitos"/></Typography>
       <Typography className={classes.title} >¡ El pago fue rechazado, volve a intentarlo o comunicate con nosotros para coordinar otro medio de pago!</Typography>
       
         <Typography className={classes.descripcion}></Typography>
