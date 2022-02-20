@@ -2,16 +2,21 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import CompraPlan from './componentes/compraplan/CompraPlan';
-import Navbar from './componentes/navbar/Navbar';
+import CompraPlanError from './componentes/compraplan/CompraPlanError';
+import CompraPlanPendiente from './componentes/compraplan/CompraPlanPendiente';
+import CompraPlanSuccess from './componentes/compraplan/CompraPlanSuccess';
 import Page from './componentes/page/Page';
 
 function App() {
   return (
     <BrowserRouter>
-    <Navbar />
     <Routes>
       <Route  path="/" element={<Page/>} />
-      <Route  path="/comprar/:id" element={<CompraPlan />} />
+      <Route  path="/comprar" element={<CompraPlan />} />
+      <Route  path="/planilla" element={<CompraPlan />} />
+      <Route  path="/aprobado" element={<CompraPlanSuccess />} />
+      <Route  path="/rechazado" element={<CompraPlanError />} />
+      <Route  path="/pendiente" element={<CompraPlanPendiente />} />
     </Routes>
   </BrowserRouter>
   );

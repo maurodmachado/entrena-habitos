@@ -1,6 +1,8 @@
 import {
   Box,
   Button,
+  Container,
+  Divider,
   Grid,
   makeStyles,
   Typography,
@@ -152,6 +154,24 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 32,
     },
   },
+  titleWhite:{
+    fontSize:27,
+    fontWeight:'bold',
+    color:'white',
+    textAlign:'center',
+    [theme.breakpoints.up('sm')]: {
+      fontSize: 30,
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: 40,
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 45,
+    },
+    [theme.breakpoints.up('xl')]: {
+      fontSize: 50,
+    },
+  },
   planesList: {
     backgroundColor: "var(--primary-color-solid)",
     display: "flex",
@@ -177,6 +197,37 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "row",
       fontSize: 25,
       paddingRight: 150,
+    },
+  },
+  dificultadList: {
+    backgroundColor: "var(--primary-color-solid)",
+    display:'flex',
+    flexDirection:'column',
+    justifyContent:'center',
+    paddingLeft:50,
+    paddingRight:50,
+    [theme.breakpoints.up("sm")]: {
+      flexDirection: "column",
+      paddingLeft:50,
+      paddingRight:50,
+    },
+    [theme.breakpoints.up("md")]: {
+      flexDirection: "row",
+      fontSize: 17,
+      paddingLeft:100,
+      paddingRight:100,
+    },
+    [theme.breakpoints.up("lg")]: {
+      flexDirection: "row",
+      fontSize: 17,
+      paddingLeft:100,
+      paddingRight:100,
+    },
+    [theme.breakpoints.up("xl")]: {
+      flexDirection: "row",
+      fontSize: 25,
+      paddingLeft:250,
+      paddingRight:250,
     },
   },
   cardPlan: {
@@ -205,6 +256,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Planes = () => {
+  const state={
+    name:'rajdeep singh',
+    love:'coding',
+    earn:'null'
+}
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
@@ -301,8 +357,8 @@ const Planes = () => {
           </Box>
           <Box id="planes" className={classes.planesList}>
             <Grid container spacing={isSmall ? 0 : 4}>
-              {planes.map((plan) => 
-                <Grid item xs={12} md={6} lg={4} xl={3}>
+              {planes.map((plan, index) => 
+                <Grid item xs={12} md={6} lg={4} xl={3} key={index}>
                   <Box className={classes.cardPlan}>
                     <Box sx={{ padding: 20, textAlign: "center", height: 200 }}>
                       <Typography variant="h6" style={{ color: "black" }}>
@@ -316,11 +372,17 @@ const Planes = () => {
                       <div
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <Link to={`/comprar/${plan.id}`}
-                        ><Button
+                        <Link to={{
+                  pathname: "/comprar"}}
+                state={{plan: plan}} >
+                  <Button
                           variant="contained"
                           color="primary"
                           style={{ width: "90%", padding: 10, margin: 10 }}
+                          onClick={()=>window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth',
+                          })}
                         >
                           Comprar
                         </Button></Link>
@@ -342,6 +404,30 @@ const Planes = () => {
                 </Grid>
               )}
             </Grid>
+          </Box>
+          <Box sx={{bgcolor: "var(--primary-color-solid)"}} >
+            
+          <Typography className={classes.titleWhite}>Dificultades</Typography>
+          <Box className={classes.dificultadList} >
+           <Box style={{witdh:'100%',backgroundImage: 'linear-gradient(to bottom, rgba(160, 50, 122, 0.62) , rgba(15, 91, 102, 0.78)),url("https://e.rpp-noticias.io/normal/2018/02/21/390239_568432.jpg")',margin:20, padding:50, textAlign:'center', borderRadius:10}}>
+              <Typography variant="h4" style={{marginBottom:20, color:'white'}}>Principiante</Typography>
+              <Divider/>
+              <Typography style={{marginTop:20, color:'white'}}>Es el nivel inicial, si hace tiempo no haces actividad física o es tu primera vez, este nivel es para vos.</Typography>
+              <Typography style={{marginTop:20, color:'white'}}>Un nivel enfocado en preparar el cuerpo, fortalecer musculos y articulaciones.</Typography>
+           </Box>
+           <Box style={{backgroundImage: 'linear-gradient(to bottom, rgba(160, 50, 122, 0.70) , rgba(15, 85, 102, 0.78)),url("https://www.caracteristicas.co/wp-content/uploads/2017/03/entrenamiento-funcional-1-e1564502577821.jpg")' ,margin:20, padding:50, textAlign:'center', borderRadius:10}}>
+              <Typography variant="h4" style={{marginBottom:20, color:'white'}}>Intermedio</Typography>
+              <Divider/>
+              <Typography style={{marginTop:20, color:'white'}}>Si ya tenes un ritmo de ejercicio físico y queres afrontar nuevos desafios, este nivel es el indicado.</Typography>
+              <Typography style={{marginTop:20, color:'white'}}>Un nivel enfocado en .</Typography>
+           </Box>
+           <Box style={{backgroundImage: 'linear-gradient(to bottom, rgba(160, 50, 122, 0.70) , rgba(15, 85, 102, 0.78)),url("https://www.caracteristicas.co/wp-content/uploads/2017/03/entrenamiento-funcional-2-e1564502237762.jpg")',margin:20, padding:50,  textAlign:'center', borderRadius:10}}>
+              <Typography variant="h4" style={{marginBottom:20, color:'white'}}>Avanzado</Typography>
+              <Divider/>
+              <Typography style={{marginTop:20, color:'white'}}>Es el nivel inicial, si hace tiempo no haces actividad física o es tu primera vez, este nivel es para vos.</Typography>
+              <Typography style={{marginTop:20, color:'white'}}>Un nivel enfocado en preparar el cuerpo, fortalecer musculos y articulaciones.</Typography>
+           </Box>
+          </Box>
           </Box>
         </Box>
       </Box>
