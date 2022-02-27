@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import imgBack from '../../media/imgPlan4.jpg';
 import clienteAxios from '../../config/axios';
 // import axios from 'axios';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import Footer from '../footer/Footer'
-import planesEntrenamiento from '../planes/planes.json'
 import Navbar from '../navbar/Navbar';
 import mp from '../../media/mercadopago.svg'
 import ok from '../../media/ok.png'
@@ -195,6 +194,7 @@ const useStyles = makeStyles((theme) => ({
       position:'absolute',
       backgroundColor:'#009ee3',
       left:10 ,
+      top:90,
       fontFamily: "Montserrat",
       fontSize: 18,
       fontWeight:'bold',
@@ -215,6 +215,7 @@ const CompraPlan = () => {
   let location = useLocation();
     const classes = useStyles();
     
+    let navigate = useNavigate();
     const [visible, setVisible] = useState(false);
     const [nombres, setNombres] = useState("");
     const [apellidos, setApellidos] = useState("");
@@ -227,19 +228,20 @@ const CompraPlan = () => {
     const [nroCalle, setNroCalle] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const [plan, setPlan] = useState(planesEntrenamiento[0]);
+    const [plan, setPlan] = useState();
     const [url, setUrl] = useState();
     // const [qr, setQr] = useState();
     // const [loadingQr, setLoadingQr] = useState(true);
     const getUrl = async (plan) => {
-      const { title, precio, id, descripcion } = plan;
+      console.log(plan);
+      const { nombre, precio, _id, descripcion_corta } = plan;
       const items = [ 
         {
-          id: id,
-          title: title,
-          description: descripcion,
+          id: _id,
+          title: nombre,
+          description: descripcion_corta,
           quantity: 1,
-          unit_price: precio
+          unit_price: Number(precio)
         }];
     
       try {
@@ -304,12 +306,12 @@ const CompraPlan = () => {
   // }
 
     useEffect(() => {
-      if(location.state === null){
-        setPlan(plan);
+      if(location.state === null){    
+        navigate("/");
       }else{
         setPlan(location.state.plan)
       }
-    }, [plan, location.state]);
+    }, [location.state]);
 
   return <>
   <Navbar tipo={false}/>
@@ -320,17 +322,15 @@ const CompraPlan = () => {
       <Box  className={classes.contenido}>
         
           <Box className={classes.containerPlan}>
-          <LinkRouter to="/">
-          <Button className={classes.backButton}>Atrás</Button>
-      </LinkRouter>
+          <Button className={classes.backButton} onClick={() => {window.history.back()}}>Atrás</Button> 
       <br/>
-        <Typography className={classes.title}>{plan.title}</Typography>
+        <Typography className={classes.title}>{plan.nombre}</Typography>
         <Box>
           <Typography className={classes.descripcion}>
-              {plan.descripcion}
+              {plan.descripcion_corta}
           </Typography>
           <Typography className={classes.descripcionLarga}>
-              {plan.descripcionLarga}
+              {plan.descripcion_larga}
           </Typography>
       </Box>
       <Box className={classes.title}>

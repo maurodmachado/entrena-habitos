@@ -127,7 +127,7 @@ function Navbar({tipo}) {
               <Typography className={classes.link} noWrap>
               Planes</Typography>
             </Link>
-            <Link  className={classes.link}
+            {/* <Link  className={classes.link}
         to="planilla"
         activeClass="active"
         spy={true} 
@@ -136,7 +136,7 @@ function Navbar({tipo}) {
     >
               <Typography className={classes.link} noWrap>
               Planilla evolución</Typography>
-            </Link>
+            </Link> */}
             <Link  className={classes.link}
         to="contacto"
         activeClass="active"
@@ -146,6 +146,12 @@ function Navbar({tipo}) {
     >
               <Typography className={classes.link} noWrap>
               Contacto</Typography>
+            </Link>
+            <Link  className={classes.link}
+        onClick={()=>{window.open('https://entrena-habitos-app.com')}}
+    >
+              <Typography className={classes.link} noWrap>
+              Login</Typography>
             </Link>
           </div>
         )}

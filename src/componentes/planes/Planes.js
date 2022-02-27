@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  CircularProgress,
   Divider,
   Grid,
   makeStyles,
@@ -8,10 +9,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
+import clienteAxios from "../../config/axios";
 import imgPlan1 from "../../media/imgPlan1.jpg";
-import planesEntrenamiento from './planes.json'
+// import planesEntrenamiento from './planes.json'
 
 const useStyles = makeStyles((theme) => ({
   planes: {
@@ -258,7 +260,18 @@ const Planes = () => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
-  const planes = planesEntrenamiento;
+  const [planes, setPlanes] = useState([]);
+
+  const getPlanes = async () => {
+    const response = await clienteAxios.get("/planes");
+    setPlanes(response.data);
+    console.log(planes);
+  }
+
+  useEffect(() => {
+    getPlanes();
+  }, []);
+
   return (
     <>
       <Box className={classes.floatlabel}>
@@ -350,16 +363,26 @@ const Planes = () => {
             </Box>
           </Box>
           <Box id="planes" className={classes.planesList}>
-            <Grid container spacing={isSmall ? 0 : 4}>
-              {planes.map((plan, index) => 
-                <Grid item xs={12} md={6} lg={4} xl={3} key={index}>
+            <Grid container spacing={isSmall ? 0 : 4} style={{justifyContent:'center'}}>
+              {planes !== undefined ? planes.map((plan, index) => 
+              
+                <Grid item xs={12} md={6} lg={6} xl={3} key={index}>
+                  {plan.status === 'ACTIVO' ?
                   <Box className={classes.cardPlan}>
-                    <Box sx={{ padding: 20, textAlign: "center", height: 200 }}>
+                    <Box sx={{ padding: 15, textAlign: "center", height: 200 }}>
                       <Typography variant="h6" style={{ color: "black" }}>
-                        {plan.title}
+                        {plan.nombre}
                       </Typography>
                       <Typography style={{ color: "black" }}>
-                        {plan.descripcion}
+                        {plan.descripcion_corta}
+                      </Typography>
+                      
+                      <Typography style={{ color: "black", fontWeight:'bold' }}>
+                        $ {plan.precio}
+                      </Typography>
+                      
+                      <Typography style={{ color: "black", fontWeight:'bold' }}>
+                        Nivel {plan.nivel}
                       </Typography>
                     </Box>
                     <Box>
@@ -395,8 +418,15 @@ const Planes = () => {
                       />
                     </Box>
                   </Box>
+                :
+                <></>
+                      }
                 </Grid>
-              )}
+              
+              )
+              :
+              <CircularProgress/>
+            }
             </Grid>
           </Box>
           <Box sx={{bgcolor: "var(--primary-color-solid)"}} >
