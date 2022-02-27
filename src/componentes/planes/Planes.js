@@ -256,7 +256,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Planes = () => {
+const Planes = ({objetivosText1, objetivosText2, objetivosTitle1, objetivosTitle2}) => {
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
@@ -265,7 +265,6 @@ const Planes = () => {
   const getPlanes = async () => {
     const response = await clienteAxios.get("/planes");
     setPlanes(response.data);
-    console.log(planes);
   }
 
   useEffect(() => {
@@ -304,13 +303,7 @@ const Planes = () => {
               }}
             >
               <Typography className={classes.text}>
-                BASTA DE EMPEZAR Y DEJAR. HAREMOS TODO LO POSIBLE PARA QUE ESTE
-                INICIO SEA EL VERDADERO COMIENZO. EL FACTOR DE LA MOTIVACIÓN Y
-                LA DISCIPLINA JUNTO CON LA ALIMENTACIÓN ES LO QUE MARCA LA
-                DIFERENCIA A LA HORA DEL RESULTADO Y EL HABITO SOSTENIBLE EN EL
-                TIEMPO. TODOS LOS PLANES SON A DISTANCIA, ESTANDO DISPONIBLES
-                PARA TODOS LOS PAISES Y SIEMPRE SE COMIENZA POR EL PLAN INICIAL
-                ORIENTADO A TU OBJETIVO.
+                {objetivosText1}
               </Typography>
             </Box>
           </Box>
@@ -327,38 +320,15 @@ const Planes = () => {
               }}
             >
               <Typography className={classes.title}>
-                ¿Por qué quiero que inicies con nuestro plan? Y que te ofrece ¿?
+                {objetivosTitle1}
               </Typography>
               <Box>
                 <Typography className={classes.textBody}>
-                  Quiero que inicies por que estoy dispuesto a hacerte mejorar
-                  en muchos aspectos como : físico, anímico y mental por que se
-                  que siguiendo este plan que elaboramos con nuestro equipo está
-                  adaptado para que cualquier persona ya sea mateur , medio o
-                  pro pueda tener una guía completa de los mejores ejercicios de
-                  para qué sirven y cuales son los beneficios esto adecuado a
-                  tus metas ya sea GANAR MASA MUSCULAR , Si llegaste a tu peso
-                  ideal con o sin la ayuda nuestra PODER MANTENERLO Y
-                  DISFRUTARLO o si queres perder grasa esos kilitos de más ,
-                  esos rollitos que simplemente no te gusta verlos cuando te
-                  miras al espejo Estás en EL LUGAR CORRECTO . Acá no hay
-                  fórmulas mágicas si estás buscando eso soga buscando. Acá se
-                  entrena , acá se crean hábitos y se forma Disciplina . VAS A
-                  TENER CONTACTO DIRECTO con el Personal trainner encargado de
-                  armar las rutinas etc para que puedas sacar todas tus dudas
-                  tendrás tu planilla de seguimiento desde el inicio del plan
-                  con un chequeo de avances etc cada 2 semanas te cuento un poco
-                  más ¿? Nuestros planes constan en 3 niveles amateur , medio y
-                  pro en los cuales desde donde comienzan deberán ir subiendo de
-                  intensidad de mes en mes
+                {objetivosText2}
                 </Typography>
               </Box>
               <Typography className={classes.title}>
-                ¿Cómo seria tu vida si lograrías mejorar en un 100% tu relación
-                con la comida, logrando el objetivo que buscas y manteniendo
-                esos resultados en el tiempo? Quiero enseñarte que la forma
-                correcta de aportar nutrientes no solo te va a dar resultados,
-                sino que también, vas a tener ENERGÍA.
+                {objetivosTitle2}
               </Typography>
             </Box>
           </Box>

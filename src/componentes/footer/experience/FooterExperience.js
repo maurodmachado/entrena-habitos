@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 
 
-const FooterExperience = () => {
+const FooterExperience = ({telefono}) => {
 
   const [textValue, setTextValue] = useState("");
   const [textAreaValue, setTextAreaValue] = useState("");
@@ -11,7 +11,7 @@ const FooterExperience = () => {
   const onTextAreaChange = (e) => setTextAreaValue(e.target.value);
   const enviarMensaje = () => {
     const msj = textAreaValue.replace(" ", "%20");
-    window.open(`https://api.whatsapp.com/send/?phone=5493834545986&text=*Cliente:*%20${textValue}.%0A${msj}`)
+    window.open(`https://api.whatsapp.com/send/?phone=549${telefono}&text=*Cliente:*%20${textValue}.%0A${msj}`)
   }
   return (
     <div className='footer-row' style={{margin:20, textAlign:'center'}}>

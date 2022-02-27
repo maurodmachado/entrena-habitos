@@ -92,7 +92,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Nosotros = () => {
+const Nosotros = ({infoNosotros}) => {
   const classes = useStyles();
   return (
     <Box className={classes.nosotrosContainer}>
@@ -107,11 +107,7 @@ const Nosotros = () => {
         </div>
     <Box className={classes.nosotros} id="nosotros">
       <Typography className={classes.paragraph}>
-Mi nombre es Luquitaz Gomez y soy Licenciado en Zanjas, N° de matrícula 0303456. Me recibí en Altamirano (Saliendo por la ruta 9) y luego realicé un curso de antropometría ISAK, un curso anual de Técnico en Empuje y soy amante del entrenamiento y el aporte de nutrientes de forma constante.
-Desde el año 2008 hasta el día de hoy en el 2022, me he dedicado a realizar planes de alimentación deportiva,
-donde pude observar los resultados en mi propio cuerpo y en miles de personas. Desarrolle un sistema de planes
-de alimentación a distancia, donde miles de personas aprenden que lograr los resultados es posible y sostenible
-en el tiempo. Los planes de adaptan en cualquier País del mundo y están divididos en tres etapas donde se comienza por el plan inicial. Todos los planes cuentas con seguimiento para que puedas consultarme todas las dudas que te surjan durante el proceso.
+{infoNosotros}
 </Typography>
 <Box className={classes.linea}>
 

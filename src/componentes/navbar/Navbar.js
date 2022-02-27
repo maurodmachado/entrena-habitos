@@ -148,7 +148,7 @@ function Navbar({tipo}) {
               Contacto</Typography>
             </Link>
             <Link  className={classes.link}
-        onClick={()=>{window.open('https://entrena-habitos-app.com')}}
+        onClick={()=>{window.open('https://eh-app.netlify.com')}}
     >
               <Typography className={classes.link} noWrap>
               Login</Typography>

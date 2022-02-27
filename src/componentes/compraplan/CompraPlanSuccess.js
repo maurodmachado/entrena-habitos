@@ -1,9 +1,9 @@
 import { Box, Button, makeStyles, Typography } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import imgBack from '../../media/imgPlan4.jpg';
 import Footer from '../footer/Footer'
 import Navbar from '../navbar/Navbar';
-import { Link as LinkRouter, useNavigate } from 'react-router-dom';
+import { Link as LinkRouter } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   allcontent: {
@@ -115,13 +115,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CompraPlanSuccess = () => {
   const classes = useStyles();
-  let navigate = useNavigate();
-
-  useEffect(() => {
-    setTimeout(() => {      
-    navigate("/");
-    }, 15000);
-  }, [navigate]);
 
   return <>
   <Navbar tipo={false}/>
@@ -136,7 +129,7 @@ const CompraPlanSuccess = () => {
       <Typography className={classes.title} >¡ El pago fue aprobado !</Typography>
       
         <Typography className={classes.descripcion}>Enviaremos a tu mail los pasos para ingresar a la plataforma y acceder a tu plan. Muchas gracias por confiar!</Typography>
-        <Typography className={classes.text}>Seras redireccionado a la página principal en 15 segundos...</Typography>
+        <Typography className={classes.text}>Si queres apresurar el tramite, envianos el comprobante por Whatsapp!</Typography>
         </Box>
     </Box> 
       <Footer />

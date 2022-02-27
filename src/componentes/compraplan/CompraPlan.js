@@ -1,13 +1,10 @@
-import { Box, Button, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Box, Button, makeStyles, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import imgBack from '../../media/imgPlan4.jpg';
-import clienteAxios from '../../config/axios';
-// import axios from 'axios';
 import {useLocation, useNavigate} from "react-router-dom";
 import Footer from '../footer/Footer'
 import Navbar from '../navbar/Navbar';
 import mp from '../../media/mercadopago.svg'
-import ok from '../../media/ok.png'
 
 const useStyles = makeStyles((theme) => ({
   allcontent: {
@@ -209,69 +206,69 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const CompraPlan = () => {
+const CompraPlan = ({telefono}) => {
 
   let location = useLocation();
     const classes = useStyles();
     
     let navigate = useNavigate();
-    const [visible, setVisible] = useState(false);
-    const [nombres, setNombres] = useState("");
-    const [apellidos, setApellidos] = useState("");
-    const [dni, setDni] = useState("");
-    const [email, setEmail] = useState("");
-    const [codigoArea, setCodigoArea] = useState("");
-    const [telefono, setTelefono] = useState("");
-    const [codigoPostal, setCodigoPostal] = useState("");
-    const [calle, setCalle] = useState("");
-    const [nroCalle, setNroCalle] = useState("");
-    const [loading, setLoading] = useState(false);
+    // const [visible, setVisible] = useState(false);
+    // const [nombres, setNombres] = useState("");
+    // const [apellidos, setApellidos] = useState("");
+    // const [dni, setDni] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [codigoArea, setCodigoArea] = useState("");
+    // const [telefono, setTelefono] = useState("");
+    // const [codigoPostal, setCodigoPostal] = useState("");
+    // const [calle, setCalle] = useState("");
+    // const [nroCalle, setNroCalle] = useState("");
+    // const [loading, setLoading] = useState(false);
 
     const [plan, setPlan] = useState();
-    const [url, setUrl] = useState();
-    // const [qr, setQr] = useState();
-    // const [loadingQr, setLoadingQr] = useState(true);
-    const getUrl = async (plan) => {
-      console.log(plan);
-      const { nombre, precio, _id, descripcion_corta } = plan;
-      const items = [ 
-        {
-          id: _id,
-          title: nombre,
-          description: descripcion_corta,
-          quantity: 1,
-          unit_price: Number(precio)
-        }];
+  //   const [url, setUrl] = useState();
+  //   // const [qr, setQr] = useState();
+  //   // const [loadingQr, setLoadingQr] = useState(true);
+  //   const getUrl = async (plan) => {
+  //     console.log(plan);
+  //     const { nombre, precio, _id, descripcion_corta } = plan;
+  //     const items = [ 
+  //       {
+  //         id: _id,
+  //         title: nombre,
+  //         description: descripcion_corta,
+  //         quantity: 1,
+  //         unit_price: Number(precio)
+  //       }];
     
-      try {
-        const response = await clienteAxios.post('/checkout/create-preference', {items, comprador:{nombres, apellidos, dni, email, codigoArea, telefono, codigoPostal, calle, nroCalle}});
-        console.log(response);
-        setUrl(response.data)
-    }catch(e){
-      console.log(e)
-    }
-  }
+  //     try {
+  //       const response = await clienteAxios.post('/checkout/create-preference', {items, comprador:{nombres, apellidos, dni, email, codigoArea, telefono, codigoPostal, calle, nroCalle}});
+  //       console.log(response);
+  //       setUrl(response.data)
+  //   }catch(e){
+  //     console.log(e)
+  //   }
+  // }
 
-  const generarLinks = () => {
-    // getQR(plan)       
-    setLoading(true);
-    getUrl(plan);
-    setTimeout(() => {
-      setLoading(false);
-      setVisible(true)
-    }, 2000);
-  }
+  // const generarLinks = () => {
+  //   // getQR(plan)       
+  //   setLoading(true);
+  //   getUrl(plan);
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //     setVisible(true)
+  //   }, 2000);
+  // }
 
-  const cancelarPago = () => { 
-    setVisible(false);
-  }
+  // const cancelarPago = () => { 
+  //   setVisible(false);
+  // }
 
-  const verificarCampos = () =>{
-    if(nombres === "" || apellidos === "" || (email === "" || !email.includes('@') || !email.includes('.')) || dni === "" || codigoArea === "" || telefono === "" || codigoPostal === "" || calle === "" || nroCalle === ""){
-      return true;
-    }
-    return false;
-  }
+  // const verificarCampos = () =>{
+  //   if(nombres === "" || apellidos === "" || (email === "" || !email.includes('@') || !email.includes('.')) || dni === "" || codigoArea === "" || telefono === "" || codigoPostal === "" || calle === "" || nroCalle === ""){
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   //   const getQR = async (plan) => {
   //     setLoadingQr(true);
@@ -308,12 +305,21 @@ const CompraPlan = () => {
       if(location.state === null){    
         navigate("/");
       }else{
-        setPlan(location.state.plan)
+        console.log(location.state.plan);
+        setPlan(location.state.plan);
       }
     }, [navigate, location.state]);
 
   return <>
   <Navbar tipo={false}/>
+  <a
+  href={`https://wa.me/${telefono}`}
+  class="whatsapp_float"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <i class="fa fa-whatsapp whatsapp-icon"></i>
+</a>
   <img src={imgBack}  height="100%" width="100%" style={{display:'flex', objectFit:'cover', position:'fixed', zIndex: -100}} alt="EntrenaHabitos"/>
       {plan !== undefined? 
       
@@ -340,12 +346,16 @@ const CompraPlan = () => {
       
        
       <Box className={classes.botonYQR}>
-      <Typography className={classes.descripcionLarga}>
+      <Button className={classes.button} onClick={()=> window.open(plan.linkPago)} > 
+      <img src={mp} height="40" style={{marginRight:10}} alt="EntrenaHabitos"/>
+      Pagar con mercadopago
+      </Button>
+      {/* <Typography className={classes.descripcionLarga}>
               Datos comprador
          {visible ? <img src={ok} height="25" style={{marginLeft:10}} alt="EntrenaHabitos"/> : <></>}
-          </Typography>
+          </Typography> */}
      
-      <Box
+      {/* <Box
       component="form"
       sx={{
         width:'90%'
@@ -377,8 +387,8 @@ const CompraPlan = () => {
 
 </div>
         
-    </Box>
-    <Box
+    </Box> */}
+    {/* <Box
       component="form"
       sx={{
         width:'90%'
@@ -411,10 +421,10 @@ const CompraPlan = () => {
 
 </div>
         
-    </Box>
+    </Box> */}
    
     
-    <Box
+    {/* <Box
       component="form"
       sx={{
         width:'90%'
@@ -456,8 +466,8 @@ const CompraPlan = () => {
 
 </div>
         
-    </Box>
-      <Box
+    </Box> */}
+      {/* <Box
       component="form"
       sx={{
         width:'90%'
@@ -489,14 +499,14 @@ const CompraPlan = () => {
 
 </div>
         
-    </Box>
+    </Box> */}
       
-    { verificarCampos() && <Typography color="error" style={{margin:5, paddingBottom:20}}>Completa los campos para generar el QR o pagar via web</Typography> } 
+    {/* { verificarCampos() && <Typography color="error" style={{margin:5, paddingBottom:20}}>Completa los campos para generar el QR o pagar via web</Typography> }  */}
        
-       {
-         visible ?
-         <>
-         <Box sx={{display:'flex', flexDirection:'row'}}>
+      
+        {/*  visible ? */}
+         
+         {/* <Box sx={{display:'flex', flexDirection:'row'}}>
          <Button className={classes.button} disabled={verificarCampos()} onClick={() => window.open(url)} >
          <img src={mp} height="40" style={{marginRight:10}} alt="EntrenaHabitos"/>
          Pagar en MercadoPago.com
@@ -505,21 +515,20 @@ const CompraPlan = () => {
          <Button className={classes.buttonCancelar} onClick={()=> cancelarPago()}>
             Cancelar
           </Button>
-          </Box>
+          </Box> */}
          {/* <Box sx={{display:'flex', height:'auto', justifyContent:'center', alignItems:'center'}}>
            <Box sx={{margin:10, display:'flex', justifyContent:'center'}} >{loadingQr ? <CircularProgress/> : <img src={qr} width="250" height="250" alt="Entrena Habitos" />}
            </Box></Box> */}
      
-     </>
-      :
-      <>
-      <Button className={classes.button} disabled={verificarCampos()} onClick={()=> generarLinks()} > 
+     
+      {/* <Button className={classes.button} disabled={verificarCampos()} onClick={()=> generarLinks()} > 
       <img src={mp} height="40" style={{marginRight:10}} alt="EntrenaHabitos"/>
       {loading ? 'Generando Link...' : 'Generar Pago'}
-      </Button>
-      </>
-    }
+      </Button> */}
+      
+    
     </Box>
+      
     </Box> 
       <Footer />
       </Box>

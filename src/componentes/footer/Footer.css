@@ -60,7 +60,6 @@
 .twitter:hover,
 .facebook:hover {
   background-color: var(--white-color);
-  transform: scale(1.5);
   transition: all 0.5s ease-out;
 }
 

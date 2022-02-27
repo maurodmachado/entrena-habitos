@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import React from 'react';
 import SocialNetworkItem from './SocialNetworkItem';
 
-const FooterContact = () => {
+const FooterContact = ({telefono, instagram}) => {
   const socialNetworks = [
     // {
     //   network: 'facebook',
@@ -10,11 +10,11 @@ const FooterContact = () => {
     // },
     {
       network: 'whatsapp',
-      url: 'https://api.whatsapp.com/send/?phone=5493834545986',
+      url: `https://api.whatsapp.com/send/?phone=549${telefono}`,
     },
     { 
       network: 'instagram',
-      url: 'https://instagram.com/MedicaTGrow',
+      url: `https://instagram.com/${instagram}`,
     }
   ];
 

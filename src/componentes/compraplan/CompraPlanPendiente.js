@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const CompraPlanPendiente = () => {
+const CompraPlanPendiente = (telefono) => {
   const classes = useStyles();
 
   return <>
@@ -134,7 +134,7 @@ const CompraPlanPendiente = () => {
         <br/>
         <SocialNetworkItem
                 network="whatsapp"
-                url="https://api.whatsapp.com/send/?phone=5493834545986"
+                url={`https://api.whatsapp.com/send/?phone=549${telefono}`}
               />
         </Box>
     </Box> 

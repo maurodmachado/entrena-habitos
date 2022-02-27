@@ -1,5 +1,6 @@
 import { Box, Divider, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
+import img from '../../media/imgYo.png'
 
 
 const useStyles = makeStyles(theme => ({
@@ -78,23 +79,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Objetivos = () => {
+const Objetivos = ({sloganTitle, sloganText}) => {
+  console.log(sloganTitle);
   const classes = useStyles();
   return (
   <Box className={classes.objetivosContainer}>
   <Box className={classes.box2}>
     <Typography className={classes.text}>
-    Actitud + Esfuerzo + Perseverancia
+    {sloganTitle}
     </Typography>
     
     <Box className={classes.box1}>
       
-    <img src="https://nutricioncestaro.com/images/Foto%20chaqueta.png" width={250} style={{padding:20}} alt="EntrenaHabitos"/>
+    <img src={img} width={250} style={{padding:20}} alt="EntrenaHabitos"/>
     <Box sx={{padding:20, fontSize:18}}>
-      Los tres componentes necesarios para lograr los objetivos tanto físicos como mentales. Se necesita trabajar mucho en la voluntad de la persona, generar ganas,
-       entusiasmo para realizar la actividad física. No existe empezar y dejar. No arrancas el lunes. Es una decisión que debes tomar ya y empezar tu cambio.
-       Podemos ayudarte para que te sientas acompañado, viendo la evolución en tu cuerpo y mente, generar pequeñas metas cada vez mas desafiantes, hasta conseguir el objetivo del plan.
-       Una vez realizado esto podrás hacer un seguimiento en la web de tu evolución. Tambien podes acceder a la Planilla de Evolución.
+      {sloganText}
     </Box>
 <Divider/>
 </Box>

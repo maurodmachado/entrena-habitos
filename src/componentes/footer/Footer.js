@@ -3,12 +3,12 @@ import './Footer.css';
 import FooterContact from './contact/FooterContact';
 import FooterExperience from './experience/FooterExperience';
 
-const Footer = () => {
+const Footer = ({telefono, instagram}) => {
 
   return (
       <div className='footer-container' id="contacto">
-        <FooterContact />
-        <FooterExperience />
+        <FooterContact telefono={telefono} instagram={instagram}/>
+        <FooterExperience telefono={telefono} />
       </div>
   );
 };
