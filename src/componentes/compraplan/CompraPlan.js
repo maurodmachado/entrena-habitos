@@ -8,7 +8,6 @@ import Footer from '../footer/Footer'
 import Navbar from '../navbar/Navbar';
 import mp from '../../media/mercadopago.svg'
 import ok from '../../media/ok.png'
-import { Link as LinkRouter} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   allcontent: {
@@ -311,7 +310,7 @@ const CompraPlan = () => {
       }else{
         setPlan(location.state.plan)
       }
-    }, [location.state]);
+    }, [navigate, location.state]);
 
   return <>
   <Navbar tipo={false}/>
