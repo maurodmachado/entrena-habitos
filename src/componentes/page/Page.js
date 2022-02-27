@@ -11,6 +11,14 @@ import Navbar from '../navbar/Navbar';
 const Page = () => {
   
   return <Box style={{paddingTop:80, height:'100%'}}>
+  <a
+  href="https://wa.me/3834545986"
+  class="whatsapp_float"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <i class="fa fa-whatsapp whatsapp-icon"></i>
+</a>
     
     <Navbar tipo={true} />
   <img src={imgBack}  height="100%" width="100%" style={{display:'flex', objectFit:'cover', position:'fixed', zIndex: -100}} alt="EntrenaHabitos"/>
